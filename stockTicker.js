@@ -1,5 +1,6 @@
 var http = require('http');
 var url = require('url');
+console.log("before Mongo client");
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://ericadebarge:fmlwvF55iM8KpBsQ@cluster0.tq1on.mongodb.net/?retryWrites=true&w=majority";
 var port = process.env.PORT || 3000;
