@@ -1,28 +1,13 @@
-// var http = require('http');
+var http = require('http');
 var url = require('url');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://ericadebarge:fmlwvF55iM8KpBsQ@cluster0.tq1on.mongodb.net/?retryWrites=true&w=majority";
-console.log("before express require");
-var express = require('express');
-console.log("after express require");
-var app = express();
-console.log("after express()");
-// var querystring = require('querystring') //for extracting POST data
+var port = process.env.PORT || 3000;
 
-//render ejs files as html
-app.set('view engine', 'ejs');
-
-app.listen(port, function() {
-    console.log('Our app is running on port ' + port);
-});
-
-// set routes
-app.get('/', function(req, res) {
-    res.render('index');
-});
-
-app.get('/stock', function (req, res) 
+http.createServer(function (req, res) 
 {
+	if (req.url == '/stock')
+	{
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		var qobj = url.parse(req.url, true).query;
 		var searchType = qobj.radio;
@@ -98,4 +83,20 @@ app.get('/stock', function (req, res)
               database.close();
            
         }); //end MongoClient.connect
+	} //end if 
+	else
+	{
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write('<form method="GET" action="stock">');
+	    res.write("<h5> Please choose whether you would like to search based on the stock ticker or company name</h5>");
+	    res.write('<input type="radio" id="stockTicker" name="radio" value="stockTicker">');
+	    res.write('<label for="stockTicker">Stock Ticker</label><br>');
+	    res.write('<input type="radio" id="company" name="radio" value="company">');
+	    res.write('<label for="company">Company Name</label><br><br>');
+	    res.write('<input type="text" name="input"><br><br>');
+	    res.write('<input type="submit">');
+	    res.write('</form>');
+	    return res.end();
+	}
+
 }).listen(port);
