@@ -96,7 +96,7 @@ http.createServer(function (req, res)
 	    res.write('<input type="text" name="input"><br><br>');
 	    res.write('<input type="submit">');
 	    res.write('</form>');
-	    return res.end();
+	    res.end();
 	}
 
 }).listen(port);
