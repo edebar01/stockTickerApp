@@ -1,10 +1,24 @@
-var http = require('http');
+// var http = require('http');
 var url = require('url');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://ericadebarge:fmlwvF55iM8KpBsQ@cluster0.tq1on.mongodb.net/?retryWrites=true&w=majority";
-var port = process.env.PORT || 8080;
+var express = require('express');
+var app = express();
+// var querystring = require('querystring') //for extracting POST data
 
-http.createServer(function (req, res) 
+//render ejs files as html
+app.set('view engine', 'ejs');
+
+app.listen(port, function() {
+    console.log('Our app is running on port ' + port);
+});
+
+// set routes
+app.get('/', function(req, res) {
+    res.render('index');
+});
+
+app.get('/stock', function (req, res) 
 {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		var qobj = url.parse(req.url, true).query;
