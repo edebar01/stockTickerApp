@@ -2,8 +2,11 @@
 var url = require('url');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://ericadebarge:fmlwvF55iM8KpBsQ@cluster0.tq1on.mongodb.net/?retryWrites=true&w=majority";
+console.log("before express require");
 var express = require('express');
+console.log("after express require");
 var app = express();
+console.log("after express()");
 // var querystring = require('querystring') //for extracting POST data
 
 //render ejs files as html
