@@ -15,11 +15,5 @@
   "bugs": {
     "url": ""
   },
-  "homepage": "",
-  "dependencies": {
-    "ejs": "~1.0.0",
-    "express": "^4.17.1",
-    "mongo": "^0.1.0",
-    "mongodb": "^3.6.3"
-  }
+  "homepage": ""
 }
